@@ -32,9 +32,11 @@ class Post extends Eloquent
         'image3',
         'image4',
         'images',
-        'user'
+        'user_id'
     ];
-
+public function user(){
+    return $this->belongsTo(User::class, 'user_id');
+}
 
 
 }

@@ -17,11 +17,12 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return  view('try',['posts'=>$posts]);
     }
 
     /**
@@ -67,21 +68,21 @@ class PostController extends Controller
             $fields['images']=$images;
         }
 
-        $fields['user']=$user->_id;
+        $fields['user_id']=$user->_id;
 
-        Post::create($fields);
-        return redirect('/')->with('success', 'Thank You for creating post');
+       $newPost = Post::create($fields);
+        return redirect("/post/{$newPost->id}")->with('success', 'Thank You for creating post');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Post $post)
     {
-        //
+        return view('single-post',['post'=>$post]);
     }
 
     /**
@@ -92,7 +93,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+
     }
 
     /**

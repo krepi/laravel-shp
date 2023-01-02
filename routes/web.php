@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-
+Route::get('/try',[PostController::class, 'index']);
 
 Route::resource('posts','PostController');
 Route::get('/create-post',[PostController::class, 'create']);
+Route::get('/post/{post}',[PostController::class, 'show']);
 Route::post('/store-post',[PostController::class, 'store']);
 
 
