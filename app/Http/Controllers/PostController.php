@@ -32,7 +32,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create-post');
+        if(!auth()->check()) {
+            return redirect('/')->with('failure','first log in ');
+        }
+
+            return view('create-post');
     }
 
     /**
@@ -69,8 +73,8 @@ class PostController extends Controller
         }
 
         $fields['user_id']=$user->_id;
+        $newPost = Post::create($fields);
 
-       $newPost = Post::create($fields);
         return redirect("/post/{$newPost->id}")->with('success', 'Thank You for creating post');
     }
 

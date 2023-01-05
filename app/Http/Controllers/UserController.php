@@ -24,9 +24,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function registerForm()
     {
-        //
+        return view('register-form');
     }
 
     /**
@@ -35,7 +35,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function registerUser(Request $request)
     {
 
         $fields = $request->validate([
@@ -78,7 +78,7 @@ class UserController extends Controller
         if(auth()->check()){
             return view('homepage-logged');
         } else {
-            return view('welcome');
+            return view('homepage-notlogged');
         }
 
     }

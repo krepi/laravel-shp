@@ -39,7 +39,8 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => 'mongodb+srv://krepi:admin@cluster0.crhuwac.mongodb.net/?retryWrites=true&w=majority',
+//            'dsn' => 'mongodb+srv://krepi:admin@cluster0.crhuwac.mongodb.net/?retryWrites=true&w=majority',
+            'dsn'=> 'mongodb+srv://padak:halabele@padak.irnmrgh.mongodb.net/?retryWrites=true&w=majority',
             'database' => env('DB_DATABASE','Olx')
         ],
 

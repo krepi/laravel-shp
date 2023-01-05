@@ -24,12 +24,15 @@ Route::get('/try',[PostController::class, 'index']);
 Route::resource('posts','PostController');
 Route::get('/create-post',[PostController::class, 'create']);
 Route::get('/post/{post}',[PostController::class, 'show']);
+
 Route::post('/store-post',[PostController::class, 'store']);
 
 
 
 
-Route::post('/register',[UserController::class,'store']);
+Route::post('/register-user',[UserController::class,'registerUser']);
+Route::post('/register-form',[UserController::class,'registerForm']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
+
 Route::get('/',[UserController::class,'showCorrectPage']);
