@@ -1,9 +1,38 @@
 <x-layout>
     <div class="container py-md-5 container--narrow">
         <div class="text-center">
-            <h2>Hello <strong>{{auth()->user()->username}}</strong>, your feed is empty.</h2>
-            <h2>Hello human</strong>, your feed is empty.</h2>
-            <p class="lead text-muted">Your feed displays the latest posts from the people you follow. If you don&rsquo;t have any friends to follow that&rsquo;s okay; you can use the &ldquo;Search&rdquo; feature in the top menu bar to find content written by people with similar interests and then follow them.</p>
+            <h2>Witaj <strong>{{auth()->user()->username}}</strong></h2>
+            <p class="lead text-muted">masz dostęp do postów , kontaktów ich właścicieli, możesz negocjowac, kupować, wystawiać własne ogłoszenia </p>
+        </div>
+
+        <div class="container py-md-5 container--narrow">
+            @foreach($posts as $post)
+            <div class="list-group">
+
+
+                    <div class="list-group-item list-group-item-action mb-3">
+
+                        <div class="d-flex justify-content-between">
+                            <h2>{{$post->brand}}</h2>
+                            <h3>{{$post->model}}</h3>
+{{--                            <h3>{{$post->images[0]}}</h3>--}}
+                            <img class="avatar-lg" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
+                        </div>
+
+                        <div class="body-content text-muted small mb-4">
+                            {{$post->description}}
+                        </div>
+                        <p class="text-muted small mb-4">
+                            <a href="#"><img class="avatar-tiny" src="{{$post->user->avatar}}" /></a>
+                            Posted by <a href="#">{{$post->user->username}}</a> on {{$post->created_at->format('n/j/Y')}}
+                        </p>
+                        </div>
+                    </div>
+
+                @endforeach
+
+            </div>
+        {{$posts->links()}}
         </div>
 
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,11 +75,11 @@ class UserController extends Controller
         return redirect('/')->with('success', 'wylogowany');
     }
     public function showCorrectPage(){
-
+        $posts = Post::paginate(3);
         if(auth()->check()){
-            return view('homepage-logged');
+            return view('homepage-logged',['posts'=>$posts]);
         } else {
-            return view('homepage-notlogged');
+            return view('homepage-notlogged',['posts'=>$posts]);
         }
 
     }
