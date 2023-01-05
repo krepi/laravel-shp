@@ -16,7 +16,7 @@
                             <h2>{{$post->brand}}</h2>
                             <h3>{{$post->model}}</h3>
 {{--                            <h3>{{$post->images[0]}}</h3>--}}
-                            <img class="avatar-lg" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
+                            <img class="rounded" style="width: 150px;" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                         </div>
 
                         <div class="body-content text-muted small mb-4">

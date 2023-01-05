@@ -13,7 +13,7 @@
                         <div class="d-flex justify-content-between">
                             <h2>{{$post->brand}}</h2>
                             <h3>{{$post->model}}</h3>
-                            <img class="avatar-lg" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
+                            <img class="rounded" style="width: 150px;"  src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                         </div>
                     </div>
                 @endforeach
