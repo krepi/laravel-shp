@@ -75,7 +75,7 @@ class UserController extends Controller
         return redirect('/')->with('success', 'wylogowany');
     }
     public function showCorrectPage(){
-        $posts = Post::paginate(3);
+        $posts = Post::latest()->paginate(4);
         if(auth()->check()){
             return view('homepage-logged',['posts'=>$posts]);
         } else {
