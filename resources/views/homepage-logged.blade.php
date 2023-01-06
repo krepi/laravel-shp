@@ -7,6 +7,7 @@
 
         <div class="container py-md-5 container--narrow">
             @foreach($posts as $post)
+                <a href="/post/{{$post->_id}}">
             <div class="list-group">
 
 
@@ -15,7 +16,6 @@
                         <div class="d-flex justify-content-between">
                             <h2>{{$post->brand}}</h2>
                             <h3>{{$post->model}}</h3>
-{{--                            <h3>{{$post->images[0]}}</h3>--}}
                             <img class="rounded" style="width: 150px;" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                         </div>
 
@@ -28,7 +28,7 @@
                         </p>
                         </div>
                     </div>
-
+                </a>
                 @endforeach
 
             </div>

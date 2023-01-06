@@ -4,27 +4,33 @@
             @csrf
             <div class="form-group">
                 <label for="bran" class="text-muted mb-1"><small>Marka</small></label>
-                <input required name="brand" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <input required name="brand" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="model" class="text-muted mb-1"><small>Model</small></label>
-                <input required name="model" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <input required name="model" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="mileage" class="text-muted mb-1"><small>Przebieg</small></label>
-                <input required name="mileage" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <input required name="mileage" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="fuel" class="text-muted mb-1"><small>Paliwo</small></label>
-                <input required name="fuel" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <select required name="fuel" id="post-title" class="form-control form-control-sm text-muted " type="text" placeholder="w" autocomplete="off" >
+                    <option value="select">Wybierz rodzaj paliwa</option>
+                    <option value="benzyna">benzyna</option>
+                    <option value="diesel">diesel</option>
+                    <option value="lpg">lpg</option>
+                    <option value="electric">electric</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="body" class="text-muted mb-1"><small>Rodzaj Nadwozia</small></label>
-                <input required name="body" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <input required name="body" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="colour" class="text-muted mb-1"><small>Kolor</small></label>
-                <input required name="colour" id="post-title" class="form-control form-control-sm form-control-title" type="text" placeholder="" autocomplete="off" />
+                <input required name="colour" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
 
 
