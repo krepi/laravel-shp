@@ -32,6 +32,10 @@
                 <label for="colour" class="text-muted mb-1"><small>Kolor</small></label>
                 <input required name="colour" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
+            <div class="form-group">
+                <label for="price" class="text-muted mb-1"><small>Cena</small></label>
+                <input required name="price" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
+            </div>
 
 
             <div class="form-group">

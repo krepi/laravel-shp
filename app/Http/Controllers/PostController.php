@@ -55,6 +55,7 @@ class PostController extends Controller
             'body'=>'required',
             'colour'=>'required',
             'description'=>'required',
+            'price'=>'required'
         ]);
         $images=[];
         $user = auth()->user();

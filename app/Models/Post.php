@@ -32,7 +32,8 @@ class Post extends Eloquent
         'image3',
         'image4',
         'images',
-        'user_id'
+        'user_id',
+        'price'
     ];
 public function user(){
     return $this->belongsTo(User::class, 'user_id');
