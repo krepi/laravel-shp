@@ -43,7 +43,7 @@ class UserController extends Controller
              Storage::delete(str_replace("/storage/", "public/", $oldAvatar));
         }
 
-        return back()->with('success', 'Congrats on the new avatar');
+        return back()->with('success', 'Avatar został zmieniony!');
 
      }
 
