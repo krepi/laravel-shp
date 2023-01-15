@@ -15,7 +15,7 @@
         </h2>
 
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST">
             @csrf
 
             <label for="old-password" class="text-muted mb-1"><small>Stare hasło</small></label>

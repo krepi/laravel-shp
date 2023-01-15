@@ -16,7 +16,7 @@
         </h2>
 
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST">
             @csrf
 
             <label for="username" class="text-muted mb-1"><small>Login</small></label>
