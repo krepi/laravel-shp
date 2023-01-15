@@ -36,3 +36,7 @@ Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
 
 Route::get('/',[UserController::class,'showCorrectPage']);
+
+
+
+Route::get('profile/{user:username}', [UserController::class, 'profile']);

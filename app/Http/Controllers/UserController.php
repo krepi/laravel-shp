@@ -20,6 +20,13 @@ class UserController extends Controller
         //
     }
 
+    public function profile(User $user){
+
+        //$thePosts = $user->posts()->get();
+
+        return view('profile-posts', ['avatar' => $user->avatar, 'username' => $user->username, 'posts' =>$user->posts()->latest()->get(), 'postCount' =>$user->posts()->count()]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
