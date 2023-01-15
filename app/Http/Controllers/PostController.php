@@ -70,7 +70,10 @@ class PostController extends Controller
                     $images[]=$filename;
                 }
             }
-            $fields['images']=$images;
+           if(count($images>0)){
+               $fields['images']=$images;
+           }
+
         }
 
         $fields['user_id']=$user->_id;
