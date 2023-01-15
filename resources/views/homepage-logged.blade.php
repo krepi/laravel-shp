@@ -16,7 +16,11 @@
                         <div class="d-flex justify-content-between">
                             <h2>{{$post->brand}}</h2>
                             <h3>{{$post->model}}</h3>
+                            @if($post->images !== null)
                             <img class="rounded" style="width: 150px;" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
+                            @else
+                            <div><p>Brak zdjęć do wyświetlenia</p></div>
+                            @endif
                         </div>
 
                         <div class="body-content text-muted small mb-4">

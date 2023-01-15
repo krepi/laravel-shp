@@ -19,8 +19,12 @@
     <div class="body-content">
     {{$post->description}}
     </div>
+    @if($post->images !== null)
     @foreach($post->images as $img)
         <img class="rounded m-3" style="width: 150px;" src="{{'/storage/post-img/'. $img}}" alt="">
     @endforeach
+    @else
+    <div><p>Brak zdjęć do wyświetlenia</p></div>
+    @endif
 </div>
 </x-layout>
