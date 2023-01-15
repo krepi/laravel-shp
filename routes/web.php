@@ -40,3 +40,5 @@ Route::get('/',[UserController::class,'showCorrectPage']);
 
 
 Route::get('profile/{user:username}', [UserController::class, 'profile']);
+Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
+Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);

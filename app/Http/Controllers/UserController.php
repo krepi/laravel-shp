@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -18,6 +20,35 @@ class UserController extends Controller
     public function index()
     {
         //
+    }
+
+    public function storeAvatar(Request $request){
+
+        $request->validate([
+         'avatar' => 'required|image|max:3000'
+        ]);
+
+        $user = auth()->user();
+        $filename = $user->id . '-'.uniqid() . '.jpg';
+
+        $imgData = Image::make($request->file('avatar'))->fit(120)->encode('jpg');
+        Storage::put('/public/avatars/'. $filename, $imgData);
+
+        $oldAvatar = $user->avatar;
+
+        $user->avatar = $filename;
+        $user->save();
+
+        if($oldAvatar != "/fallback-avatar.jpg"){
+             Storage::delete(str_replace("/storage/", "public/", $oldAvatar));
+        }
+
+        return back()->with('success', 'Congrats on the new avatar');
+
+     }
+
+    public function showAvatarForm(){
+        return view('avatar-form');
     }
 
     public function profile(User $user){
