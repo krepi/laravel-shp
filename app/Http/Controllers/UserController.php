@@ -22,6 +22,16 @@ class UserController extends Controller
         //
     }
 
+
+    public function showEditProfileForm(User $user){
+        return view('edit-profile', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);
+
+    }
+    public function changePassword(User $user){
+        return view('change-password', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);
+
+    }
+
     public function storeAvatar(Request $request){
 
         $request->validate([
