@@ -15,16 +15,24 @@
         </h2>
 
 
-        <form action="#" method="POST">
+        <form action="/update-password/{{auth()->user()->username}}" method="POST">
             @csrf
 
             <label for="old-password" class="text-muted mb-1"><small>Stare hasło</small></label>
-            <input name="old-password" id="old-password" class="form-control form-control-lg form-control-title" type="text" placeholder="" autocomplete="off" />
+            <input name="old-password" id="old-password" class="form-control form-control-lg form-control-title" type="password" placeholder="" autocomplete="off" />
+            @error('old-password')
+                    <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                    @enderror
             <label for="new-password" class="text-muted mb-1"><small>Nowe hasło</small></label>
-            <input name="new-password" id="new-password" class="form-control form-control-lg form-control-title" type="text" placeholder="" autocomplete="off" />
+            <input name="new-password" id="new-password" class="form-control form-control-lg form-control-title" type="password" placeholder="" autocomplete="off" />
+            @error('new-password')
+                    <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                    @enderror
             <label for="new-password" class="text-muted mb-1"><small>Potwierdź hasło</small></label>
-            <input name="new-password" id="new-password" class="form-control form-control-lg form-control-title" type="text" placeholder="" autocomplete="off" />
-
+            <input name="new-password_confirmation" id="new-password-confirm" class="form-control form-control-lg form-control-title" type="password" placeholder="" autocomplete="off" />
+            @error('password_confirmation')
+            <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+            @enderror
           <button class="btn btn-primary mt-3">Save</button>
           </form>
 

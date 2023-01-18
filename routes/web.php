@@ -28,16 +28,16 @@ Route::get('/post/{post}',[PostController::class, 'show']);
 Route::post('/store-post',[PostController::class, 'store']);
 
 
-
-
-Route::post('/register-user',[UserController::class,'registerUser']);
-Route::post('/register-form',[UserController::class,'registerForm']);
+Route::match(['get','post'],'/register-user',[UserController::class,'registerUser']);
+Route::match(['get','post'],'/register-form',[UserController::class,'registerForm']);
+// Route::post('/register-user',[UserController::class,'registerUser']);
+// Route::post('/register-form',[UserController::class,'registerForm']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
 
 Route::get('/',[UserController::class,'showCorrectPage']);
 
-
+Route::match(['get','post'],'/update-profile/{user:username}',[UserController::class,'updateProfile']);
 
 Route::get('profile/{user:username}', [UserController::class, 'profile']);
 Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
@@ -45,3 +45,6 @@ Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);
 
 Route::get('/edit-profile/{user:username}', [UserController::class, 'showEditProfileForm']);
 Route::get('/change-password/{user:username}', [UserController::class, 'changePassword']);
+Route::post('/update-password/{user:username}', [UserController::class, 'updatePassword']);
+Route::get('/deleted-profile/{user:username}', [UserController::class, 'showDeleteForm']);
+Route::post('/delete/{user:username}', [UserController::class, 'deleteProfile']);

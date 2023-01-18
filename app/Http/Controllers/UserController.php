@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,6 +24,64 @@ class UserController extends Controller
         //
     }
 
+    public function updateProfile(User $user, Request $request){
+        $fields = $request->validate([
+            'username'=>['required', 'min:3','max:20',Rule::unique('users', 'username')],
+            'email'=>['required', 'email', Rule::unique('users','email')]
+        ]);
+
+
+
+    }
+
+    public function updatePassword(User $user, Request $request){
+        $fields = $request->validate([
+            'old-password'=>'required',
+            'new-password'=>['required', 'min:4','confirmed']
+        ]);
+
+        $oldPassword = $fields['old-password'];
+        $hashedPassword = User::where('_id',$user->id)->first()->password;
+
+        if(Hash::check($oldPassword, $hashedPassword))
+        {
+            $user->password = bcrypt($fields['new-password']);
+            $user->save();
+
+           return redirect('/')->with('success', 'Hasło zostało zmienione');
+        }else{
+            return redirect()->back()->with('failure','Hasło nie pasuje do obecnego hasła. Proszę spróbuj ponownie.');
+        }
+
+    }
+
+
+    public function deleteProfile(User $user, Request $request){
+
+        $field= $request->validate([
+            'password'=>'required',
+        ]);
+
+        $inputPassword = $field['password'];
+        $hashedPassword = User::where('_id',$user->id)->first()->password;
+
+        if(Hash::check($inputPassword, $hashedPassword))
+        {
+            $request->session()->regenerate();
+            Post::where('user_id', $user->id)->delete();
+            $user->delete();
+
+           return redirect('/')->with('success', 'Profil został usunięty');
+        }else{
+            return redirect()->back()->with('failure','Twoje obecne hasło nie pasuje do hasła, które podałeś. Proszę spróbuj ponownie.');
+        }
+
+    }
+
+    public function showDeleteForm(User $user){
+        return view('profile-deleted');
+
+    }
 
     public function showEditProfileForm(User $user){
         return view('edit-profile', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);

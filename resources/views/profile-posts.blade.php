@@ -3,13 +3,14 @@
     <h2>
         <img class="avatar-small" src="{{$avatar}}" /> {{$username}}
         <form class="ml-2 d-inline" action="#" method="POST">
+            @csrf
             <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
             <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
             @if(auth()->user()->username == $username)
-            {{-- <a href="/manage-avatar" class="btn btn-secondary btn-sm">Zmień Avatar</a> --}}
             <a href="/edit-profile/{{auth()->user()->username}}" class="btn btn-secondary btn-sm">Edytuj profil</a>
-            {{-- <a href="/change-password" class="btn btn-secondary btn-sm">Zmień hasło</a> --}}
-            <a href="/delete-account" class="btn btn-secondary btn-sm">Usuń konto</a>
+            @csrf
+            <a href="/deleted-profile/{{auth()->user()->username}}" class="btn btn-secondary btn-sm">Usuń konto</a>
+            @csrf
             @endif
         </form>
     </h2>
