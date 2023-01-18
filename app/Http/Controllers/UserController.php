@@ -25,12 +25,34 @@ class UserController extends Controller
     }
 
     public function updateProfile(User $user, Request $request){
-        $fields = $request->validate([
-            'username'=>['required', 'min:3','max:20',Rule::unique('users', 'username')],
+
+        $user = User::where('_id', $user->id)->select('username', 'email')->first();
+        $oldUsername = $user->username;
+        $oldEmail = $user->email;
+        $newUsername = $request->input('username');
+        $newEmail = $request->input('email');
+
+        if ($oldUsername !== $newUsername) {
+             $username = $request->validate([
+            'username'=> ['required', 'min:3','max:20',Rule::unique('users', 'username')]
+        ]);
+
+    }
+
+        if ($oldEmail !== $newEmail) {
+            $email = $request->validate([
             'email'=>['required', 'email', Rule::unique('users','email')]
         ]);
 
+    }
 
+        User::where('_id', $user->id)->update(['username' => $newUsername, 'email' => $newEmail]);
+        return redirect()->to('/edit-profile/'.$newUsername)->with('success', 'Profil został zaktualizowany!');
+
+    }
+
+    public function showEditProfileForm(User $user){
+        return view('edit-profile', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);
 
     }
 
@@ -83,10 +105,6 @@ class UserController extends Controller
 
     }
 
-    public function showEditProfileForm(User $user){
-        return view('edit-profile', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);
-
-    }
     public function changePassword(User $user){
         return view('change-password', ['avatar' => $user->avatar, 'username' => $user->username, 'email' => $user->email]);
 

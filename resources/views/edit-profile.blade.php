@@ -31,8 +31,6 @@
             @error('email')
             <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
             @enderror
-            {{-- <label for="password" class="text-muted mb-1"><small>Hasło</small></label>
-            <input name="password" id="password" class="form-control form-control-lg form-control-title" type="text" autocomplete="off" /> --}}
 
 
           <button class="btn btn-primary mt-3">Save</button>
