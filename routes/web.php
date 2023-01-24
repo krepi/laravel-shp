@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/try',[PostController::class, 'index']);
 Route::resource('posts','PostController');
 Route::get('/create-post',[PostController::class, 'create']);
 Route::get('/post/{post}',[PostController::class, 'show']);
+Route::delete('/post/{post}', [PostController::class, 'delete'])->middleware('can:delete,post');
 
 Route::post('/store-post',[PostController::class, 'store']);
 
@@ -48,3 +50,8 @@ Route::get('/change-password/{user:username}', [UserController::class, 'changePa
 Route::post('/update-password/{user:username}', [UserController::class, 'updatePassword']);
 Route::get('/deleted-profile/{user:username}', [UserController::class, 'showDeleteForm']);
 Route::post('/delete/{user:username}', [UserController::class, 'deleteProfile']);
+
+
+//follow related routes
+Route::post('/create-follow/post/{post}', [FollowController::class, 'createFollow']);
+Route::post('/remove-follow/post/{post}', [FollowController::class, 'removeFollow']);

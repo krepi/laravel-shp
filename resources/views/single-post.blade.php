@@ -5,12 +5,16 @@
         <h3>{{$post->model}}</h3>
 
         <span class="pt-2">
-            <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
+            <button class="btn btn-primary btn-sm ">Follow <i class="fas fa-user-plus"></i></button>
             <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
+            @if(auth()->user()->username === $post->user->username)
           <a href="#" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-          <form class="delete-post-form d-inline" action="#" method="POST">
+          <form class="delete-post-form d-inline" action="/post/{{$post->id}}" method="POST">
+            @csrf
+            @method('DELETE')
             <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
           </form>
+          @endif
         </span>
     </div>
 

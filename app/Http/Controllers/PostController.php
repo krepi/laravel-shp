@@ -13,6 +13,12 @@ class PostController extends Controller
 
 
 
+    public function delete(Post $post){
+
+       Post::where('_id', $post->id)->delete();
+       return redirect('/profile/'. auth()->user()->username)->with('success', 'Post successfully deleted');
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -93,6 +99,7 @@ class PostController extends Controller
         return view('single-post',['post'=>$post]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -116,14 +123,5 @@ class PostController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
-    }
+
 }
