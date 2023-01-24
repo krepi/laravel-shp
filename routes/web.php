@@ -30,8 +30,10 @@ Route::post('/store-post',[PostController::class, 'store']);
 
 
 
+//Route::match(['get','post'],'/register-user',[UserController::class,'registerUser']);
 Route::post('/register-user',[UserController::class,'registerUser']);
-Route::post('/register-form',[UserController::class,'registerForm']);
+//Route::post('/register-form',[UserController::class,'registerForm']);
+Route::match(['get','post'],'/register-form',[UserController::class,'registerForm']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
 

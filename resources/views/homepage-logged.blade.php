@@ -20,8 +20,7 @@
                             @if($post->images!==null)
                                 <img class="rounded" style="width: 150px;"  src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                             @else
-                                <div><p>brak fotek czyni twój post mniej atrakcyjnym :D</p></div>
-
+                                <div><p>Brak zdjęć do wyświetlenia</p></div>
                             @endif
                         </div>
 

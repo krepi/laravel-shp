@@ -40,7 +40,6 @@
                     <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
                     @enderror
                 </div>
-
                 <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
             </form>
         </div>

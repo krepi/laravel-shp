@@ -24,9 +24,7 @@
         <img class="rounded m-3" style="width: 150px;" src="{{'/storage/post-img/'. $img}}" alt="">
     @endforeach
         @else
-        <div>
-            <p>brak zdjęć</p>
-        </div>
+        <div><p>Brak zdjęć do wyświetlenia</p></div>
     @endif
 </div>
 </x-layout>
