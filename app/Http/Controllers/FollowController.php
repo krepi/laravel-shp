@@ -26,7 +26,9 @@ class FollowController extends Controller
         return back()->with('success', 'Dodano do obserwowanych');
     }
 
-    public function removeFollow() {
+    public function removeFollow(Post $post) {
+        Follow::where([['user_id','=', auth()->user()->id],['followedpost','=', $post->id]])->delete();
+        return back()->with('success', 'Usunięto z obserwowanych');
 
     }
 }

@@ -13,11 +13,17 @@
             <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
           </form>
           @else
-             <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
-             <form class="follow-post-form d-inline" action="/create-follow/{{$post->id}}" method="POST">
-                @csrf
-                <button class="btn btn-primary btn-sm ">Follow <i class="fas fa-user-plus"></i></button>
-            </form>
+          @if(!$currentlyFollowing)
+          <form class="follow-post-form d-inline" action="/create-follow/{{$post->id}}" method="POST">
+            @csrf
+            <button class="btn btn-primary btn-sm ">Follow <i class="fas fa-user-plus"></i></button>
+          </form>
+          @else
+          <form class="follow-post-form d-inline" action="/remove-follow/{{$post->id}}" method="POST">
+            @csrf
+            <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button>
+          </form>
+          @endif
           @endif
         </span>
     </div>

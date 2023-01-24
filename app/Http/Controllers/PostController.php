@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Follow;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -132,7 +133,15 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('single-post',['post'=>$post]);
+        $currentlyFollowing = 0;
+
+        $user = auth()->user();
+
+        if(auth()->check()){
+        $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id],['followedpost', '=', $post->id]])->count();
+        }
+
+        return view('single-post',['currentlyFollowing' => $currentlyFollowing, 'post'=>$post]);
     }
 
 
