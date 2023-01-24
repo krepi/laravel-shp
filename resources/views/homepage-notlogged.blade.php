@@ -17,13 +17,12 @@
                             <h3>{{$post->model}}</h3>
                             <p>przebieg:</p>
                             <h4>{{$post->mileage}}</h4>
-                           @if($post->images!==null)
+                            @if($post->images !== null)
                             <img class="rounded" style="width: 150px;"  src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                             @else
-                                <div><p>Brak zdjęć do wyświetlenia</p></div>
+                            <div><p>Brak zdjęć do wyświetlenia</p></div>
                             @endif
                         </div>
-
                     </div>
                 @endforeach
             </div>

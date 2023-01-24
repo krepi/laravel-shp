@@ -16,11 +16,10 @@
                         <div class="d-flex justify-content-between">
                             <h2>{{$post->brand}}</h2>
                             <h3>{{$post->model}}</h3>
-{{--                            <img class="rounded" style="width: 150px;" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">--}}
-                            @if($post->images!==null)
-                                <img class="rounded" style="width: 150px;"  src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
+                            @if($post->images !== null)
+                            <img class="rounded" style="width: 150px;" src="{{'/storage/post-img/'.$post->images[0]}}" alt="">
                             @else
-                                <div><p>Brak zdjęć do wyświetlenia</p></div>
+                            <div><p>Brak zdjęć do wyświetlenia</p></div>
                             @endif
                         </div>
 
@@ -29,7 +28,7 @@
                         </div>
                         <p class="text-muted small mb-4">
                             <a href="#"><img class="avatar-tiny" src="{{$post->user->avatar}}" /></a>
-                            Posted by <a href="#">{{$post->user->username}}</a> on {{$post->created_at->format('n/j/Y')}}
+                            Posted by <a href="/profile/{{$post->user->username}}">{{$post->user->username}}</a> on {{$post->created_at->format('n/j/Y')}}
                         </p>
                         </div>
                     </div>
