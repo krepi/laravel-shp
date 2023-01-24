@@ -11,7 +11,42 @@ use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
 
+    public function update(Post $post, Request $request){
+        $incomingFields = $request->validate([
+            'brand'=>'required',
+            'model'=>'required',
+            'mileage'=>'required',
+            'fuel'=>'required',
+            'body'=>'required',
+            'colour'=>'required',
+            'description'=>'required',
+            'price'=>'required'
+        ]);
+        $images=[];
+        $user = auth()->user();
+        $img=$request->file();
 
+        if($img){
+            foreach($img as $im){
+                if($im){
+                    $imgData= Image::make( $im)->fit(240)->encode('jpg');
+                    $filename= $user->username. '-' .uniqid(). '.jpg';
+                    Storage::put('public/post-img/'. $filename, $imgData);
+                    $images[]=$filename;
+                }
+            }
+        }
+
+        $incomingFields['images']=$images;
+
+        $post->update($incomingFields);
+        return redirect("/post/{$post->id}")->with('success', 'Post successfully updated');
+
+    }
+
+    public function showEditForm(Post $post){
+        return view('edit-post', ['post' => $post]);
+    }
 
     public function delete(Post $post){
 
@@ -76,11 +111,12 @@ class PostController extends Controller
                     $images[]=$filename;
                 }
             }
-           if(count($images>0)){
-               $fields['images']=$images;
-           }
+
 
         }
+        //if(count($images)>0){
+            $fields['images']=$images;
+            //}
 
         $fields['user_id']=$user->_id;
         $newPost = Post::create($fields);
@@ -99,29 +135,6 @@ class PostController extends Controller
         return view('single-post',['post'=>$post]);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
 
 
 }

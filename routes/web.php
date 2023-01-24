@@ -25,7 +25,10 @@ Route::get('/try',[PostController::class, 'index']);
 Route::resource('posts','PostController');
 Route::get('/create-post',[PostController::class, 'create']);
 Route::get('/post/{post}',[PostController::class, 'show']);
-Route::delete('/post/{post}', [PostController::class, 'delete'])->middleware('can:delete,post');
+Route::delete('/post/{post}', [PostController::class, 'delete']);
+Route::get('/post/{post}/edit', [PostController::class, 'showEditForm']);
+Route::put('/post/{post}', [PostController::class, 'update']);
+
 
 Route::post('/store-post',[PostController::class, 'store']);
 
