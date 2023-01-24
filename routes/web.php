@@ -56,5 +56,5 @@ Route::post('/delete/{user:username}', [UserController::class, 'deleteProfile'])
 
 
 //follow related routes
-Route::post('/create-follow/post/{post}', [FollowController::class, 'createFollow']);
-Route::post('/remove-follow/post/{post}', [FollowController::class, 'removeFollow']);
+Route::post('/create-follow/{post}', [FollowController::class, 'createFollow']);
+Route::post('/remove-follow/{post}', [FollowController::class, 'removeFollow']);
