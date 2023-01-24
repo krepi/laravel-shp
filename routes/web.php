@@ -47,6 +47,7 @@ Route::match(['get','post'],'/update-profile/{user:username}',[UserController::c
 Route::get('profile/{user:username}', [UserController::class, 'profile']);
 Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
 Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);
+Route::get('profile/{user:username}/followed', [UserController::class, 'postFollowing']);
 
 Route::get('/edit-profile/{user:username}', [UserController::class, 'showEditProfileForm']);
 Route::get('/change-password/{user:username}', [UserController::class, 'changePassword']);

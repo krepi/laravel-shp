@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -139,11 +140,40 @@ class UserController extends Controller
         return view('avatar-form');
     }
 
+    private function checkFollowedPosts(User $user){
+
+        $followedPosts = Follow::where('user_id', $user->id)->pluck('followedpost');
+
+        foreach($followedPosts as $followedPost){
+            $post_id = $followedPost;
+            $posts[] = Post::where('_id', $post_id)->get();
+        }
+
+        return $posts;
+
+    }
+
     public function profile(User $user){
 
         //$thePosts = $user->posts()->get();
+        $followedPosts = $this->checkFollowedPosts($user);
+        $countFollowed = count($followedPosts);
 
-        return view('profile-posts', ['avatar' => $user->avatar, 'username' => $user->username, 'posts' =>$user->posts()->latest()->get(), 'postCount' =>$user->posts()->count()]);
+        return view('profile-posts', ['avatar' => $user->avatar, 'username' => $user->username, 'posts' =>$user->posts()->latest()->get(), 'postCount' =>$user->posts()->count(), 'postCountFollowed' => $countFollowed]);
+    }
+
+    public function postFollowing(User $user){
+
+        // $followedPosts = Follow::where('user_id', $user->id)->pluck('followedpost');
+
+        // foreach($followedPosts as $followedPost){
+        //     $post_id = $followedPost;
+        //     $posts[] = Post::where('_id', $post_id)->get();
+        // }
+        $followedPosts = $this->checkFollowedPosts($user);
+        $countFollowed = count($followedPosts);
+
+        return view('profile-following',['posts'=>$followedPosts, 'avatar' => $user->avatar, 'username' => $user->username, 'postCount' =>$user->posts()->count(), 'postCountFollowed' => $countFollowed]);
     }
 
     /**
