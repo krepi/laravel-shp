@@ -42,6 +42,9 @@ class PostController extends Controller
                 }
             }
         }
+        if(count($images)>0){
+            $incomingFields['images']=$images;
+            }
 
         $incomingFields['images']=$images;
 
@@ -120,9 +123,9 @@ class PostController extends Controller
 
 
         }
-        //if(count($images)>0){
+        if(count($images)>0){
             $fields['images']=$images;
-            //}
+            }
 
         $fields['user_id']=$user->_id;
         $newPost = Post::create($fields);
