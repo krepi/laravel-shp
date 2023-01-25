@@ -42,9 +42,12 @@ class PostController extends Controller
                 }
             }
         }
-if(count($images)>0) {
-    $incomingFields['images'] = $images;
-}
+        if(count($images)>0){
+            $incomingFields['images']=$images;
+            }
+
+        $incomingFields['images']=$images;
+
         $post->update($incomingFields);
         return redirect("/post/{$post->id}")->with('success', 'Post successfully updated');
 
