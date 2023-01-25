@@ -143,7 +143,7 @@ class UserController extends Controller
     private function checkFollowedPosts(User $user){
 
         $followedPosts = Follow::where('user_id', $user->id)->pluck('followedpost');
-
+        $posts = [];
         foreach($followedPosts as $followedPost){
             $post_id = $followedPost;
             $posts[] = Post::where('_id', $post_id)->get();
