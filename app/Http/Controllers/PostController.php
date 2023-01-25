@@ -42,9 +42,9 @@ class PostController extends Controller
                 }
             }
         }
-
-        $incomingFields['images']=$images;
-
+if(count($images)>0) {
+    $incomingFields['images'] = $images;
+}
         $post->update($incomingFields);
         return redirect("/post/{$post->id}")->with('success', 'Post successfully updated');
 
@@ -120,9 +120,9 @@ class PostController extends Controller
 
 
         }
-        //if(count($images)>0){
+        if(count($images)>0){
             $fields['images']=$images;
-            //}
+            }
 
         $fields['user_id']=$user->_id;
         $newPost = Post::create($fields);
