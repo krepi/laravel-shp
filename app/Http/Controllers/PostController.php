@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function search($term){
+        $posts = Post::search($term)->get(null, ['*'], 'mongodb');
+        $posts->load('user:id,username,avatar');
+        return $posts;
+    }
 
     public function update(Post $post, Request $request){
         $incomingFields = $request->validate([

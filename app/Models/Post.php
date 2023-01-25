@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Post extends Eloquent
 {
+
+    use Searchable;
     use HasFactory;
 
     protected $connection = 'mongodb';
@@ -35,11 +39,30 @@ class Post extends Eloquent
         'user_id',
         'price'
     ];
-public function user(){
-    return $this->belongsTo(User::class, 'user_id');
-}
 
-protected static function boot()
+    public function searchableAs()
+    {
+        return 'posts_index';
+    }
+
+
+    public function toSearchableArray(){
+
+        return [
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'fuel' => $this->fuel,
+            'body' => $this->body,
+            'colour' => $this->colour,
+            'description' => $this->description
+        ];
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+     }
+
+    protected static function boot()
     {
         parent::boot();
         static::deleting(function($post) {
