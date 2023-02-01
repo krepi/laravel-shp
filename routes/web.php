@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Events\ChatMessage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -32,7 +34,7 @@ Route::put('/post/{post}', [PostController::class, 'update']);
 
 Route::post('/store-post',[PostController::class, 'store']);
 
-
+//-------------------USER______________________
 Route::match(['get','post'],'/register-user',[UserController::class,'registerUser']);
 Route::match(['get','post'],'/register-form',[UserController::class,'registerForm']);
 // Route::post('/register-user',[UserController::class,'registerUser']);
@@ -56,10 +58,26 @@ Route::get('/deleted-profile/{user:username}', [UserController::class, 'showDele
 Route::post('/delete/{user:username}', [UserController::class, 'deleteProfile']);
 
 
-//follow related routes
+//follow related routes------------------------------------------------------------
+
 Route::post('/create-follow/{post}', [FollowController::class, 'createFollow']);
 Route::post('/remove-follow/{post}', [FollowController::class, 'removeFollow']);
 
 
 //search
 Route::get('/search/{term}', [PostController::class, 'search']);
+
+//-----------------------chat------------
+Route::post('/send-chat-message', function (Request $request){
+$formFields = $request->validate([
+   'textvalue'=>'required'
+]);
+if (!trim(strip_tags($formFields['textvalue']))){
+    return response()->noContent();
+}
+broadcast( new ChatMessage([
+    'username' =>auth()->user()->username,
+    'textvalue' => strip_tags($request->textvalue),
+    'avatar' =>auth()->user()->avatar  ]))->toOthers();
+return response()->noContent();
+});

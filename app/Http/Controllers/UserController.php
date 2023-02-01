@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChatEvent;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Follow;
@@ -220,6 +221,7 @@ class UserController extends Controller
         if (auth()->attempt(['username'=>$fields['loginusername'],'password'=> $fields['loginpassword']]))
         {
             $request->session()->regenerate();
+            event(new ChatEvent(['username' =>auth()->user()->username, 'action' => 'login']));
             return redirect('/')->with('success','zalogowano ');
         }else{
             return redirect('/')->with('failure','bład logowania ');
@@ -227,7 +229,9 @@ class UserController extends Controller
     }
 
     public function logout(){
+        event(new ChatEvent(['username' =>auth()->user()->username, 'action' => 'logout']));
         auth()->logout();
+
         return redirect('/')->with('success', 'wylogowany');
     }
     public function showCorrectPage(){
