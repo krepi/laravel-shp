@@ -26,7 +26,9 @@ class PostController extends Controller
             'body'=>'required',
             'colour'=>'required',
             'description'=>'required',
-            'price'=>'required'
+            'price'=>'required',
+            'contact'=>'required'
+
         ]);
         $images=[];
         $user = auth()->user();
@@ -56,7 +58,6 @@ class PostController extends Controller
     public function showEditForm(Post $post){
         return view('edit-post', ['post' => $post]);
     }
-
     public function delete(Post $post){
 
        Post::where('_id', $post->id)->delete();
@@ -105,7 +106,8 @@ class PostController extends Controller
             'body'=>'required',
             'colour'=>'required',
             'description'=>'required',
-            'price'=>'required'
+            'price'=>'required',
+            'contact'=>'required'
         ]);
         $images=[];
         $user = auth()->user();

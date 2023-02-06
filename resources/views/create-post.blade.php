@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="mileage" class="text-muted mb-1"><small>Przebieg</small></label>
-                <input required name="mileage" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
+                <input required name="mileage" id="post-title" class="form-control form-control-sm text-muted" type="number" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="fuel" class="text-muted mb-1"><small>Paliwo</small></label>
@@ -34,12 +34,16 @@
             </div>
             <div class="form-group">
                 <label for="price" class="text-muted mb-1"><small>Cena</small></label>
-                <input required name="price" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
+                <input required name="price" id="post-title" class="form-control form-control-sm text-muted" type="number" placeholder="" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label for="contact" class="text-muted mb-1"><small>Kontakt</small></label>
+                <input required name="contact" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="telefonu, mail " autocomplete="off" />
             </div>
 
 
             <div class="form-group">
-                <label for="description" class="text-muted mb-1"><small>Opis</small></label>
+                <label for="description" class="text-muted mb-1"><small>Opis (wyposażenie itd)</small></label>
                 <textarea required name="description" id="post-body" class="body-content tall-textarea form-control" type="text"></textarea>
             </div>
             <label for="description" class="text-muted mb-1"><small>Zdjecia</small></label>
@@ -50,7 +54,7 @@
                 <input class="mb-3" type="file" name="image3">
                 <input class="mb-3" type="file" name="image4">
             </div>
-            <button class="btn btn-primary btn-lg">Save New Post</button>
+            <button class="btn btn-primary btn-lg">Stwórz Ogłoszenie</button>
         </form>
     </div>
 </x-layout>
