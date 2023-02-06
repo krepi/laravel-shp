@@ -129,7 +129,7 @@ class UserController extends Controller
         $user->avatar = $filename;
         $user->save();
 
-        if($oldAvatar != "/fallback-avatar.jpg"){
+        if($oldAvatar != "/fallback-avatar2.png"){
              Storage::delete(str_replace("/storage/", "public/", $oldAvatar));
         }
 
