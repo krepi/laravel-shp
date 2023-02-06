@@ -16,12 +16,12 @@
           @if(!$currentlyFollowing)
           <form class="follow-post-form d-inline" action="/create-follow/{{$post->id}}" method="POST">
             @csrf
-            <button class="btn btn-primary btn-sm ">Follow <i class="fas fa-user-plus"></i></button>
+            <button class="btn btn-primary btn-sm ">Obserwuj <i class="fas fa-user-plus"></i></button>
           </form>
           @else
           <form class="follow-post-form d-inline" action="/remove-follow/{{$post->id}}" method="POST">
             @csrf
-            <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button>
+            <button class="btn btn-danger btn-sm">Przestań obserwować <i class="fas fa-user-times"></i></button>
           </form>
           @endif
           @endif
