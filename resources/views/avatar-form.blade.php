@@ -4,7 +4,7 @@
 
         <p><small><strong><a href="/edit-profile/{{auth()->user()->username}}">&laquo; Powrót do profilu</a></strong></small></p>
 
-        <h2 class="text-center mb-3">Upload a New Avatar</h2>
+        <h2 class="text-center mb-3">Umieść Nowy Avatar</h2>
 
         <form action="/manage-avatar" method="POST" enctype="multipart/form-data">
         @csrf
