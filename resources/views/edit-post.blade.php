@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="mileage" class="text-muted mb-1"><small>Przebieg</small></label>
-                <input value="{{old('mileage', $post->mileage)}}" required name="mileage" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
+                <input value="{{old('mileage', $post->mileage)}}" required name="mileage" id="post-title" class="form-control form-control-sm text-muted" type="number" placeholder="" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label for="fuel" class="text-muted mb-1"><small>Paliwo</small></label>
@@ -37,10 +37,14 @@
                 <label for="price" class="text-muted mb-1"><small>Cena</small></label>
                 <input value="{{old('price', $post->price)}}" required name="price" id="post-title" class="form-control form-control-sm text-muted" type="text" placeholder="" autocomplete="off" />
             </div>
+            <div class="form-group">
+                <label for="contact" class="text-muted mb-1"><small>Kontakt</small></label>
+                <input value="{{old('price', $post->contact)}}" required name="price" id="post-title" class="form-control form-control-sm text-muted" type="number" placeholder="" autocomplete="off" />
+            </div>
 
 
             <div class="form-group">
-                <label for="description" class="text-muted mb-1"><small>Opis</small></label>
+                <label for="description" class="text-muted mb-1"><small>Opis (wyposażenie itd)</small></label>
                 <textarea value="{{old('description', $post->description)}}" required name="description" id="post-body" class="body-content tall-textarea form-control" type="text" placeholder="" autocomplete="off">{{old('description', $post->description)}}</textarea>
             </div>
             <label for="images" class="text-muted mb-1"><small>Zdjecia</small></label>

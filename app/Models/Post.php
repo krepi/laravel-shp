@@ -37,7 +37,8 @@ class Post extends Eloquent
         'image4',
         'images',
         'user_id',
-        'price'
+        'price',
+        'contact'
     ];
 
     public function searchableAs()
