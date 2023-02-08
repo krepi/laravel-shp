@@ -33,6 +33,15 @@
         Wystawiony przez: <a href="/profile/{{$post->user->username}}">{{$post->user->username}}</a> w {{$post->created_at->format('n/j/Y')}}
     </p>
     <div class="body-content">
+        <div class="font-italic">
+    <p class="mb-1 ">Cena: {{$post->price}} zł</p>
+    <p class="mb-1">Przebieg: {{$post->mileage}} km</p>
+    <p class="mb-1">Paliwo: {{$post->fuel}}</p>
+    <p class="mb-1">Rodzaj nadwozia: {{$post->body}}</p>
+    <p class="mb-2">Kolor: {{$post->colour}}</p>
+
+    </div>
+
     {{$post->description}}
     </div>
     @if($post->images !== null)
